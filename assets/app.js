@@ -28,14 +28,23 @@ function waLink(){
   const digits = raw.replace(/\D/g,'');
   return `https://wa.me/${digits}`;
 }
+function normalizeImageEntry(entry){
+  if (!entry) return { src:'', focus:'50% 50%' };
+  if (typeof entry === 'string') return { src: entry, focus:'50% 50%' };
+  return {
+    src: entry.src || '',
+    focus: entry.focus || '50% 50%'
+  };
+}
+
 function buildCarCard(car){
   const title = `${car.year} ${car.make} ${car.model}${car.trim ? ' ' + car.trim : ''}`;
-  const img = (car.images && car.images[0]) ? car.images[0] : '';
+  const firstImage = normalizeImageEntry((car.images && car.images[0]) ? car.images[0] : '');
   const hot = car.featured ? `<span class="badge badge--hot">Featured</span>` : '';
   const status = car.status ? `<span class="badge">${car.status}</span>` : '';
   return `
     <article class="card car-card">
-      <div class="car-card__img">${img ? `<img loading="lazy" src="${img}" alt="${title}">` : ''}</div>
+      <div class="car-card__img">${firstImage.src ? `<img loading="lazy" src="${firstImage.src}" alt="${title}" style="object-position:${firstImage.focus}">` : ''}</div>
       <div class="car-card__body">
         <div class="badges">${hot}${status}</div>
         <h3>${title}</h3>
@@ -200,19 +209,23 @@ async function carInit(){
 
   const mainImg = $('#mainImg');
   const thumbs = $('#thumbs');
-  if (mainImg && car.images?.length){
-    mainImg.src = car.images[0];
+  const images = (car.images || []).map(normalizeImageEntry).filter(i => i.src);
+  if (mainImg && images.length){
+    mainImg.src = images[0].src;
     mainImg.alt = title;
+    mainImg.style.objectPosition = images[0].focus;
   }
   if (thumbs){
-    thumbs.innerHTML = (car.images || []).slice(0,6).map((src,i)=>`
-      <div class="thumb" role="button" tabindex="0" aria-label="View image ${i+1}">
-        <img loading="lazy" src="${src}" alt="${title} photo ${i+1}">
+    thumbs.innerHTML = images.slice(0,6).map((img,i)=>`
+      <div class="thumb" role="button" tabindex="0" aria-label="View image ${i+1}" data-src="${img.src}" data-focus="${img.focus}">
+        <img loading="lazy" src="${img.src}" alt="${title} photo ${i+1}" style="object-position:${img.focus}">
       </div>
     `).join('');
-    $$('.thumb', thumbs).forEach((t, i)=>{
-      const src = car.images[i];
-      const go = () => { mainImg.src = src; };
+    $$('.thumb', thumbs).forEach((t)=>{
+      const go = () => {
+        mainImg.src = t.dataset.src;
+        mainImg.style.objectPosition = t.dataset.focus || '50% 50%';
+      };
       t.addEventListener('click', go);
       t.addEventListener('keypress', (e)=>{ if (e.key === 'Enter') go(); });
     });
@@ -250,47 +263,110 @@ function contactInit(){
 
   const p = qs();
   const car = p.car ? decodeURIComponent(p.car) : '';
-  if (car) document.getElementById('cMessage').value = `Hi CarQuest4U,\n\nI'm interested in: ${car}\n\nPlease contact me with more details.\n`;
+  if (car) document.getElementById('cMessage').value = `Hi CarQuest4U,
 
-  const emailTo = 'carquest4u@gmail.com';
-  const wa = waLink();
+I'm interested in: ${car}
 
-  form.addEventListener('submit', (e)=>{
+Please contact me with more details.
+`;
+
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwvndgwq';
+  const submitToFormspree = async (payload) => {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok){
+      throw new Error('Form submission failed');
+    }
+    return res;
+  };
+
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const name = $('#cName').value.trim();
     const email = $('#cEmail').value.trim();
     const phone = $('#cPhone').value.trim();
     const topic = $('#cTopic').value;
     const msg = $('#cMessage').value.trim();
+    const btn = form.querySelector('button[type="submit"]');
+    const ty = document.getElementById('thankyou');
 
-    const subject = `CarQuest4U Inquiry${car ? ' - ' + car : ''} (${topic})`;
-    const body = [`Name: ${name}`, `Email: ${email}`, `Phone: ${phone}`, `Topic: ${topic}`, '', msg].join('\n');
+    if (btn) btn.disabled = true;
+    if (ty){
+      ty.style.display = 'none';
+      ty.textContent = '';
+    }
 
-    window.location.href = `mailto:${encodeURIComponent(emailTo)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    const waText = `Hi CarQuest4U!%0A%0ATopic: ${encodeURIComponent(topic)}%0A%0A${encodeURIComponent(msg)}%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}`;
-    window.setTimeout(()=>{
-      window.open(`${wa}?text=${waText}`, '_blank', 'noopener');
-      const ty = document.getElementById('thankyou');
-      if (ty) ty.style.display = 'block';
+    try{
+      await submitToFormspree({
+        formType: 'Contact Inquiry',
+        car,
+        name,
+        email,
+        phone,
+        topic,
+        message: msg,
+        sourcePage: location.pathname
+      });
+      if (ty){
+        ty.textContent = 'Thanks! Your message was sent successfully. We will contact you shortly.';
+        ty.style.display = 'block';
+      }
       form.reset();
-    }, 600);
+    }catch(err){
+      console.error(err);
+      if (ty){
+        ty.textContent = 'We could not send your message right now. Please try again in a moment.';
+        ty.style.display = 'block';
+      }
+    }finally{
+      if (btn) btn.disabled = false;
+    }
   });
 
   const news = $('#newsletterForm');
   if (news){
-    news.addEventListener('submit', (e)=>{
+    news.addEventListener('submit', async (e)=>{
       e.preventDefault();
       const em = $('#nEmail').value.trim();
-      const subject = 'Newsletter signup - CarQuest4U';
-      const body = `Please add this email to the newsletter list:\n\n${em}`;
-      window.location.href = `mailto:${encodeURIComponent(emailTo)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const btn = news.querySelector('button[type="submit"]');
       const nt = document.getElementById('nThanks');
-      if (nt) nt.style.display = 'block';
-      news.reset();
+
+      if (btn) btn.disabled = true;
+      if (nt){
+        nt.style.display = 'none';
+        nt.textContent = '';
+      }
+
+      try{
+        await submitToFormspree({
+          formType: 'Newsletter Signup',
+          email: em,
+          sourcePage: location.pathname
+        });
+        if (nt){
+          nt.textContent = 'Thanks! You are now subscribed to updates.';
+          nt.style.display = 'block';
+        }
+        news.reset();
+      }catch(err){
+        console.error(err);
+        if (nt){
+          nt.textContent = 'Signup failed right now. Please try again in a moment.';
+          nt.style.display = 'block';
+        }
+      }finally{
+        if (btn) btn.disabled = false;
+      }
     });
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', async ()=>{
   setYear();
@@ -298,8 +374,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const mark = document.querySelector('.brand__mark');
   if (mark){
     const img = document.createElement('img');
-    img.src = 'assets/logo.jpeg';
+    img.src = 'assets/images/logo.jpeg';
     img.alt = 'CarQuest4U logo';
+    img.loading = 'lazy';
     mark.innerHTML = '';
     mark.appendChild(img);
   }

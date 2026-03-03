@@ -10,4 +10,9 @@ EDIT INVENTORY:
 - For photos, use image URLs or place files under assets/ and reference them like "assets/mycar1.jpg"
 
 NOTES:
-- Contact form is static: it opens an email draft to carquest4u@gmail.com and then opens WhatsApp.
+- Contact/newsletter forms submit to Formspree endpoint configured in assets/app.js.
+
+FOCUS PREVIEW TOOL:
+- Open: focus-tool.html
+- Drag the marker to set crop focus for each car image.
+- Download updated cars.json and replace data/cars.json.

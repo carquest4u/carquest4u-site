@@ -9,7 +9,10 @@
 <body>
 <header class="topbar">
   <div class="wrap topbar__inner">
-    <a class="brand" href="index.html">CarQuest<span>4u</span></a>
+    <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">CarQuest<span>4u</span></span>
+      </a>
 
     <nav class="nav">
       <a href="index.html" data-nav="home">Home</a>
@@ -32,22 +35,15 @@
     document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
   });
 </script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const page = location.pathname.split('/').pop() || 'index.html';
-    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
-    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
-  });
-</script>
 
 <main class="wrap page">
   <div class="page__head">
     <div>
       <div class="kicker">Contact</div>
       <h1>Message CarQuest4U</h1>
-      <p class="muted">Form will open your email and also redirect you to WhatsApp.</p>
+      <p class="muted">Form sends directly through our secure contact service. WhatsApp is available from the top bar and floating button.</p>
     </div>
     <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
-      <a class="btn btn--primary" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
       <a class="btn btn--ghost" href="mailto:carquest4u@gmail.com">Email</a>
     </div>
   </div>
@@ -88,11 +84,10 @@
 
         <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap;">
           <button class="btn btn--primary" type="submit">Send</button>
-          <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/14077707324?text=Hi%20CarQuest4U!%20I%20have%20a%20question.">Chat on WhatsApp</a>
         </div>
 
         <div class="notice" id="thankyou" style="display:none; margin-top:1rem;">
-          Thanks! If WhatsApp didn’t open automatically, use the button above.
+          Thanks! Your message status will appear here after submission.
         </div>
       </form>
 
@@ -108,7 +103,7 @@
           <button class="btn btn--primary" type="submit">Subscribe</button>
         </div>
         <div class="notice" id="nThanks" style="display:none; margin-top:1rem;">
-          Thanks! Your email app will open to confirm signup.
+          Thanks! Newsletter signup status will appear here after submission.
         </div>
       </form>
     </section>
