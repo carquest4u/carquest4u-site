@@ -68,16 +68,16 @@ h3{font-size:1.55rem}
 .brand{display:flex;align-items:center;gap:.75rem;min-width:210px}
 }
 .brand{
-  font-family:Teko, sans-serif;
-  font-size:1.9rem;
-  letter-spacing:.04em;
-  text-decoration:none;
-  color:#fff;
+  font-family: Teko, sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: .02em;  /* much tighter */
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
 }
-
 .brand span{
   color:var(--red2);
-}
 }
 .brand__mark img{width:44px;height:44px;object-fit:cover}
 .brand__name{font-family:Teko,sans-serif;font-size:1.85rem;letter-spacing:.04em}
