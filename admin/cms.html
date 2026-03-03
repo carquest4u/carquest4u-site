@@ -4,12 +4,72 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CMS | CarQuest4U Admin</title>
+  <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
 <script>
   window.CQX_ADMIN_PASSWORD = window.CQX_ADMIN_PASSWORD || 'carquest4u-admin';
 </script>
 <script src="auth.js"></script>
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<main class="wrap page" id="cmsRoot">
+  <div class="page__head">
+    <div>
+      <div class="kicker">Admin</div>
+      <h1>CMS Setup Check</h1>
+      <p class="muted">Checking GitHub CMS configuration…</p>
+    </div>
+  </div>
+  <div class="card" style="padding:1rem;" id="cmsStatus"></div>
+</main>
+
+<script>
+(async function(){
+  const statusEl = document.getElementById('cmsStatus');
+  try {
+    const res = await fetch('config.yml', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Could not load admin/config.yml');
+    const yml = await res.text();
+
+    const repoMatch = yml.match(/^\s*repo:\s*(.+)\s*$/m);
+    const repoVal = repoMatch ? repoMatch[1].trim().replace(/^"|"$/g,'') : '';
+    const placeholder = !repoVal || repoVal.includes('REPLACE_WITH_');
+
+    if (placeholder){
+      statusEl.innerHTML = `
+        <h2>CMS not configured yet</h2>
+        <p class="muted">Your current GitHub backend repo is still a placeholder, which causes the GitHub login flow to fail with <b>Not Found</b>.</p>
+        <ol>
+          <li>Open <code>admin/config.yml</code> and set <code>backend.repo</code> to your real repo, e.g. <code>your-user/carquest4u-site</code>.</li>
+          <li>Keep <code>branch: main</code> (or change to your default branch).</li>
+          <li>In your OAuth provider for Decap/GitHub auth, add this site callback URL.</li>
+          <li>Redeploy, then refresh this page.</li>
+        </ol>
+        <p><a class="btn btn--primary" href="focus-tool.html">Use Focus Tool for now</a></p>
+      `;
+      return;
+    }
+
+    statusEl.innerHTML = `
+      <h2>CMS config found</h2>
+      <p class="muted">Repo: <code>${repoVal}</code>. Loading Decap CMS…</p>
+    `;
+
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+    script.async = true;
+    document.body.appendChild(script);
+  } catch (err){
+    console.error(err);
+    statusEl.innerHTML = `
+      <h2>CMS initialization failed</h2>
+      <p class="muted">${String(err.message || err)}</p>
+      <p class="muted">Check that <code>/admin/config.yml</code> exists and redeploy.</p>
+    `;
+  }
+})();
+</script>
+
+<script src="../assets/app.js"></script>
 </body>
 </html>

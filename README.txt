@@ -17,3 +17,9 @@ ADMIN PANEL:
 - CMS: /admin/cms.html (manage cars, upload images, publish workflow)
 - Focus Tool: /admin/focus-tool.html (visual crop focus editor)
 - NOTE: update admin/config.yml with your real GitHub repo before using CMS publish.
+
+CMS LOGIN "NOT FOUND" FIX:
+- Edit admin/config.yml and set backend.repo to your real GitHub repo (user/repo).
+- Ensure backend.branch matches your default branch (usually main).
+- Configure your Decap/GitHub OAuth callback URL for this domain.
+- Redeploy after changes.
