@@ -32,12 +32,6 @@
     document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
   });
 </script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const page = location.pathname.split('/').pop() || 'index.html';
-    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
-    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
-  });
-</script>
 
 <main class="wrap page">
   <div class="page__head">
