@@ -16,3 +16,7 @@ FOCUS PREVIEW TOOL:
 - Open: focus-tool.html
 - Drag the marker to set crop focus for each car image.
 - Download updated cars.json and replace data/cars.json.
+
+DEPLOYED PREVIEW URL:
+- https://<your-domain>/focus-tool.html
+- If page is missing, purge Cloudflare cache and redeploy.
