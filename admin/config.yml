@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: REPLACE_WITH_YOUR_GITHUB_ORG_OR_USER/REPLACE_WITH_REPO
+  repo: carquest4u/carquest4u-site
   branch: main
 
 local_backend: true
