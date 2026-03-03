@@ -72,6 +72,10 @@ h3{font-size:1.55rem}
             linear-gradient(135deg,var(--red),#5b0000);
   border:1px solid rgba(255,255,255,.14);
   display:grid;place-items:center;overflow:hidden;
+    background-image: url('images/logo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .brand__mark img{width:44px;height:44px;object-fit:cover}
 .brand__name{font-family:Teko,sans-serif;font-size:1.85rem;letter-spacing:.04em}
@@ -104,7 +108,7 @@ input:focus,select:focus,textarea:focus{border-color:rgba(225,6,0,.45);box-shado
   background:
     radial-gradient(800px 260px at 20% 30%, rgba(225,6,0,.35), transparent 55%),
     linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
-    url('logo.jpeg') center/contain no-repeat;
+    url('images/logo.jpeg') center/contain no-repeat;
 }
 .hero__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.9rem}
 .stat{padding:.8rem;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
