@@ -13,10 +13,11 @@
     "fuel": "Gasoline",
     "body": "SUV",
     "color": "",
-    "vin": "",
+    "vin": "3VV3B7AX4JM018898",
     "drivetrain": "FWD",
-    "title": "Clean",
+    "title_status": "Clean Title",
     "financing": true,
+    "description": "2018 Volkswagen Tiguan — roomy SUV with a smooth ride, great cargo space, and German-engineered comfort. Perfect daily driver for Orlando with strong practicality. Financing available.",
     "images": [
       "assets/images/tiguan-front.jpeg",
       "assets/images/tiguan-side.jpeg",
@@ -34,17 +35,20 @@
     "trim": "Hybrid",
     "price": 17800,
     "mileage": 79000,
-    "transmission": "Automatic",
+    "transmission": "Automatic (CVT)",
     "fuel": "Hybrid",
     "body": "Sedan",
-    "color": "Silver",
+    "color": "",
     "vin": "JTDEAMDE0NJ046378",
     "drivetrain": "FWD",
-    "title": "Clean",
+    "title_status": "Clean Title",
     "financing": true,
+    "description": "2022 Toyota Corolla Hybrid — super fuel-efficient, reliable, and perfect for commuting. Low running costs, smooth drive, and strong resale value. Financing available.",
     "images": [
+      "assets/images/corolla-front.jpeg",
       "assets/images/corolla-side.jpeg",
-      "assets/images/corolla-back.jpeg"
+      "assets/images/corolla-back.jpeg",
+      "assets/images/corolla-interior.jpeg"
     ]
   }
 ]
