@@ -8,24 +8,30 @@
   <meta name="description" content="CarQuest4U in Orlando, FL. Browse our newest vehicles and contact us fast on WhatsApp." />
 </head>
 <body>
-
-  <header class="topbar">
-    <div class="wrap topbar__inner">
+<header class="topbar">
+  <div class="wrap topbar__inner">
     <a class="brand" href="index.html">CarQuest<span>4u</span></a>
-      </a>
-      <nav class="nav">
-        <a href="index.html" data-nav="home">Home</a>
-        <a href="inventory.html" data-nav="inventory">Inventory</a>
-        <a href="contact.html" data-nav="contact">Contact</a>
-      </nav>
-      <div class="topbar__cta">
-        <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
-        <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
-        <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
-      </div>
+
+    <nav class="nav">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="inventory.html" data-nav="inventory">Inventory</a>
+      <a href="contact.html" data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="topbar__cta">
+      <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
+      <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
+      <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
     </div>
-  </header>
+  </div>
+</header>
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+  });
+</script>
   document.addEventListener('DOMContentLoaded', () => {
     const page = location.pathname.split('/').pop() || 'index.html';
     const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
