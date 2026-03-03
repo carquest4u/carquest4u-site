@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Car Details | CarQuest4U</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">CarQuest<span>4u</span></span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="inventory.html" data-nav="inventory">Inventory</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="topbar__cta">
+        <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
+        <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
+        <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+  });
+</script>
+
+<main class="wrap page" id="carRoot">
+  <div class="page__head">
+    <div>
+      <div class="kicker">Vehicle</div>
+      <h1 id="carTitle">Loading…</h1>
+      <p class="muted" id="carPrice"></p>
+    </div>
+    <div style="display:flex; gap:.6rem; flex-wrap:wrap; align-items:center;">
+      <a class="btn btn--primary" id="btnWhatsApp" target="_blank" rel="noopener" href="#">WhatsApp about this car</a>
+      <a class="btn btn--ghost" id="btnContact" href="contact.html">Contact form</a>
+    </div>
+  </div>
+
+  <div class="car-detail">
+    <section class="card gallery">
+      <div class="gallery__main">
+        <img id="mainImg" alt="Car photo" />
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </section>
+
+    <aside class="card details">
+      <div class="kicker">Details</div>
+      <h2 style="margin-top:.25rem;">Specs</h2>
+      <div class="specs" id="carSpecs"></div>
+      <hr class="sep" />
+      <h3>Description</h3>
+      <p class="muted" id="carDesc"></p>
+
+      <div class="notice" style="margin-top:1rem;">
+        <b>As-is disclaimer:</b> Vehicles are sold as-is unless stated otherwise. Verify all details before purchase.
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__bottom muted">© <span id="year"></span> CarQuest4U.</div>
+</footer>
+
+<a class="float-whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324" aria-label="Chat on WhatsApp">
+  WhatsApp
+</a>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

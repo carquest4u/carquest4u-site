@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory | CarQuest4U</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">CarQuest<span>4u</span></span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="inventory.html" data-nav="inventory">Inventory</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="topbar__cta">
+        <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
+        <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
+        <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+  });
+</script>
+
+<main class="wrap page">
+  <div class="page__head">
+    <div>
+      <div class="kicker">Inventory</div>
+      <h1>Browse vehicles</h1>
+      <p class="muted"><b id="invCount">—</b> vehicles currently listed.</p>
+    </div>
+    <div class="muted small">Tip: click a car to view details and message us on WhatsApp.</div>
+  </div>
+
+  <form class="card" id="filterForm" style="padding:1rem;">
+    <div class="filters">
+      <div class="field">
+        <label for="fMake">Make</label>
+        <select id="fMake"><option value="">All Makes</option></select>
+      </div>
+      <div class="field">
+        <label for="fModel">Model</label>
+        <select id="fModel" disabled><option value="">All Models</option></select>
+      </div>
+      <div class="field">
+        <label for="fMaxPrice">Max Price</label>
+        <select id="fMaxPrice">
+          <option value="">Any</option>
+          <option value="5000">$5,000</option>
+          <option value="10000">$10,000</option>
+          <option value="15000">$15,000</option>
+          <option value="20000">$20,000</option>
+          <option value="30000">$30,000</option>
+          <option value="50000">$50,000</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fQuery">Search</label>
+        <input id="fQuery" placeholder="e.g., Camry, SUV, 2021" />
+      </div>
+      <div class="field" style="justify-content:flex-end;">
+        <button class="btn btn--primary" type="submit">Apply</button>
+        <button class="btn btn--ghost" type="button" id="clearFilters">Clear</button>
+      </div>
+    </div>
+  </form>
+
+  <div style="height:1rem;"></div>
+  <div class="grid" id="invGrid" aria-live="polite"></div>
+
+  <div style="height:1.6rem;"></div>
+  <div class="notice">
+    Want a specific car? Message us on WhatsApp and we can help source it (including auctions).
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <div class="footer__brand">CarQuest4U</div>
+      <p class="muted">Find it. Finance it. Drive it. • Orlando, FL</p>
+    </div>
+    <div>
+      <div class="footer__title">Contact</div>
+      <a href="tel:+14077707324">407-770-7324</a><br />
+      <a href="mailto:carquest4u@gmail.com">carquest4u@gmail.com</a><br />
+      <span class="muted">Monday–Friday 9–5pm</span>
+    </div>
+    <div>
+      <div class="footer__title">Legal</div>
+      <a href="terms.html">Terms & Conditions</a><br />
+      <a href="privacy.html">Privacy Policy</a><br />
+      <a href="disclaimers.html">Disclaimers</a>
+    </div>
+  </div>
+  <div class="wrap footer__bottom muted">© <span id="year"></span> CarQuest4U.</div>
+</footer>
+
+<a class="float-whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324" aria-label="Chat on WhatsApp">
+  WhatsApp
+</a>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

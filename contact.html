@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | CarQuest4U</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">CarQuest<span>4u</span></span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="inventory.html" data-nav="inventory">Inventory</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="topbar__cta">
+        <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
+        <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
+        <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+  });
+</script>
+
+<main class="wrap page">
+  <div class="page__head">
+    <div>
+      <div class="kicker">Contact</div>
+      <h1>Message CarQuest4U</h1>
+      <p class="muted">Form will open your email and also redirect you to WhatsApp.</p>
+    </div>
+    <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+      <a class="btn btn--primary" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
+      <a class="btn btn--ghost" href="mailto:carquest4u@gmail.com">Email</a>
+    </div>
+  </div>
+
+  <div class="car-detail">
+    <section class="card" style="padding:1rem;">
+      <h2>Contact form</h2>
+      <form id="contactForm">
+        <div class="filters" style="grid-template-columns: 1fr 1fr;">
+          <div class="field">
+            <label for="cName">Name</label>
+            <input id="cName" required placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="cPhone">Phone</label>
+            <input id="cPhone" required placeholder="(###) ###-####" />
+          </div>
+          <div class="field">
+            <label for="cEmail">Email</label>
+            <input id="cEmail" type="email" required placeholder="you@email.com" />
+          </div>
+          <div class="field">
+            <label for="cTopic">Topic</label>
+            <select id="cTopic">
+              <option>Inventory inquiry</option>
+              <option>Financing</option>
+              <option>Delivery</option>
+              <option>Auction assistance</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:.75rem;">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" required placeholder="Tell us what you’re looking for…"></textarea>
+        </div>
+
+        <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap;">
+          <button class="btn btn--primary" type="submit">Send</button>
+          <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/14077707324?text=Hi%20CarQuest4U!%20I%20have%20a%20question.">Chat on WhatsApp</a>
+        </div>
+
+        <div class="notice" id="thankyou" style="display:none; margin-top:1rem;">
+          Thanks! If WhatsApp didn’t open automatically, use the button above.
+        </div>
+      </form>
+
+      <hr class="sep" />
+      <h2>Newsletter</h2>
+      <p class="muted">Get weekly updates when we add new cars.</p>
+      <form id="newsletterForm">
+        <div class="field">
+          <label for="nEmail">Email</label>
+          <input id="nEmail" type="email" required placeholder="you@email.com" />
+        </div>
+        <div style="margin-top:.75rem;">
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </div>
+        <div class="notice" id="nThanks" style="display:none; margin-top:1rem;">
+          Thanks! Your email app will open to confirm signup.
+        </div>
+      </form>
+    </section>
+
+    <aside>
+      <div class="card" style="padding:1rem;">
+        <h2>Service area</h2>
+        <p class="muted">No physical address listed. We serve Orlando, FL and nearby areas.</p>
+        <div class="map" aria-label="Map of Orlando, FL">
+          <iframe
+            title="Orlando, FL map"
+            width="100%" height="100%" style="border:0;"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Orlando%2C%20FL&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__bottom muted">© <span id="year"></span> CarQuest4U.</div>
+</footer>
+
+<a class="float-whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324" aria-label="Chat on WhatsApp">
+  WhatsApp
+</a>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
