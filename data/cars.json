@@ -1,0 +1,55 @@
+[
+  {
+    "id": "tiguan-2018",
+    "featured": true,
+    "status": "Available",
+    "year": 2018,
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "trim": "SE",
+    "price": 10200,
+    "mileage": 107000,
+    "body": "SUV",
+    "transmission": "Automatic",
+    "drivetrain": "FWD",
+    "fuel": "Gasoline",
+    "color": "Black",
+    "vin": "3VV3B7AX4JM018898",
+    "title_status": "Clean Title",
+    "description": "2018 Volkswagen Tiguan SE — German engineered comfort with smooth turbo performance and excellent cargo space. Spacious interior, refined ride quality, and strong resale value. Perfect daily SUV for commuting or family use. Financing available.",
+    "images": [
+      "assets/cars/2018-tiguan/1.jpeg",
+      "assets/cars/2018-tiguan/2.jpeg",
+      "assets/cars/2018-tiguan/3.jpeg",
+      "assets/cars/2018-tiguan/4.jpeg",
+      "assets/cars/2018-tiguan/5.jpeg",
+      "assets/cars/2018-tiguan/6.jpeg"
+    ]
+  },
+  {
+    "id": "corolla-2022-hybrid",
+    "featured": true,
+    "status": "Available",
+    "year": 2022,
+    "make": "Toyota",
+    "model": "Corolla",
+    "trim": "Hybrid LE",
+    "price": 17800,
+    "mileage": 79000,
+    "body": "Sedan",
+    "transmission": "Automatic (CVT)",
+    "drivetrain": "FWD",
+    "fuel": "Hybrid",
+    "color": "Silver",
+    "vin": "JTDEAMDE0NJ046378",
+    "title_status": "Clean Title",
+    "description": "2022 Toyota Corolla Hybrid LE — extremely fuel efficient with legendary Toyota reliability. Smooth ride, excellent MPG, and low cost of ownership. Ideal commuter vehicle with modern styling and strong resale value. Financing available.",
+    "images": [
+      "assets/cars/2022-corolla-hybrid/1.jpeg",
+      "assets/cars/2022-corolla-hybrid/2.jpeg",
+      "assets/cars/2022-corolla-hybrid/3.jpeg",
+      "assets/cars/2022-corolla-hybrid/4.jpeg",
+      "assets/cars/2022-corolla-hybrid/5.jpeg"
+    ]
+  }
+]
