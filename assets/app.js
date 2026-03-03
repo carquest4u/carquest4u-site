@@ -298,8 +298,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   const mark = document.querySelector('.brand__mark');
   if (mark){
     const img = document.createElement('img');
-    img.src = 'assets/logo.jpeg';
+    img.src = 'assets/images/logo.jpeg';
     img.alt = 'CarQuest4U logo';
+    img.loading = 'lazy';
     mark.innerHTML = '';
     mark.appendChild(img);
   }
