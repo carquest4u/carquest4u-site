@@ -4,68 +4,198 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CarQuest4U | Find it. Finance it. Drive it.</title>
-  <meta name="description" content="CarQuest4U in Orlando, FL." />
   <link rel="stylesheet" href="assets/style.css" />
+  <meta name="description" content="CarQuest4U in Orlando, FL. Browse our newest vehicles and contact us fast on WhatsApp." />
 </head>
-
 <body>
 
-<header class="topbar">
-  <div class="wrap topbar__inner">
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <!-- TEXT BRAND ONLY -->
+      <a class="brand" href="index.html">CarQuest<span>4u</span></a>
 
-    <a class="brand" href="index.html">CarQuest<span>4u</span></a>
+      <nav class="nav">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="inventory.html" data-nav="inventory">Inventory</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
 
-    <nav class="nav">
-      <a href="index.html" data-nav="home">Home</a>
-      <a href="inventory.html" data-nav="inventory">Inventory</a>
-      <a href="contact.html" data-nav="contact">Contact</a>
-    </nav>
-
-    <div class="topbar__cta">
-      <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
-      <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
-      <a class="pill pill--whatsapp" target="_blank" href="https://wa.me/14077707324">WhatsApp</a>
+      <div class="topbar__cta">
+        <a class="pill" href="tel:+14077707324">📞 407-770-7324</a>
+        <a class="pill" href="mailto:carquest4u@gmail.com">✉️ Email</a>
+        <a class="pill pill--whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324">WhatsApp</a>
+      </div>
     </div>
+  </header>
 
-  </div>
-</header>
+  <!-- NAV ACTIVE STATE (must stay INSIDE script tags) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const page = location.pathname.split('/').pop() || 'index.html';
+      const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+      document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+    });
+  </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const page = location.pathname.split('/').pop() || 'index.html';
-  const key = page.includes('inventory') ? 'inventory' :
-              page.includes('contact') ? 'contact' : 'home';
-  document.querySelectorAll('[data-nav]').forEach(a =>
-    a.classList.toggle('is-active', a.dataset.nav === key)
-  );
-});
-</script>
+  <main>
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <div class="kicker">Find it. Finance it. Drive it.</div>
+          <h1>Find it. Finance it. Drive it.</h1>
+          <p class="muted">Orlando, FL • Monday–Friday 9–5pm • Financing • Delivery • Auction Assistance</p>
 
-<main>
+          <form class="card hero__search" id="homeSearchForm">
+            <div class="field">
+              <label for="makeSelect">Make</label>
+              <select id="makeSelect"><option value="">All Makes</option></select>
+            </div>
+            <div class="field">
+              <label for="modelSelect">Model</label>
+              <select id="modelSelect" disabled><option value="">All Models</option></select>
+            </div>
+            <div class="field">
+              <label for="maxPrice">Max Price</label>
+              <select id="maxPrice">
+                <option value="">Any</option>
+                <option value="5000">$5,000</option>
+                <option value="10000">$10,000</option>
+                <option value="15000">$15,000</option>
+                <option value="20000">$20,000</option>
+                <option value="30000">$30,000</option>
+                <option value="50000">$50,000</option>
+              </select>
+            </div>
+            <button class="btn btn--primary" type="submit">Search</button>
+            <a class="btn btn--ghost" href="inventory.html">View All</a>
+          </form>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>Find it. Finance it. Drive it.</h1>
-    <p class="muted">Orlando, FL • Monday–Friday 9–5pm • Financing • Delivery • Auction Assistance</p>
-  </div>
-</section>
+          <div class="chips" aria-label="Browse by body type">
+            <a class="chip" href="inventory.html?type=Sedan">Sedan</a>
+            <a class="chip" href="inventory.html?type=Coupe">Coupe</a>
+            <a class="chip" href="inventory.html?type=SUV">SUV</a>
+            <a class="chip" href="inventory.html?type=Hatchback">Hatchback</a>
+            <a class="chip" href="inventory.html?type=Convertible">Convertible</a>
+            <a class="chip" href="inventory.html?type=Truck">Truck</a>
+          </div>
+        </div>
 
-<section class="section">
-  <div class="wrap">
-    <h2>Featured Cars</h2>
-    <div class="grid" id="newestGrid"></div>
-  </div>
-</section>
+        <div class="hero__visual card">
+          <div class="hero__badge">Aggressive red & black • Performance theme</div>
+          <div class="hero__img" aria-hidden="true"></div>
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__num" id="statCars">—</div>
+              <div class="stat__label">Cars listed</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">Orlando</div>
+              <div class="stat__label">Service area</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">Fast</div>
+              <div class="stat__label">WhatsApp replies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</main>
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <div class="kicker">Hand-picked</div>
+            <h2>Featured cars</h2>
+            <p class="muted">Tap any vehicle to view details and message us on WhatsApp.</p>
+          </div>
+          <a class="link" href="inventory.html">Browse inventory →</a>
+        </div>
 
-<footer class="footer">
-  <div class="wrap footer__bottom muted">
-    © <span id="year"></span> CarQuest4U
-  </div>
-</footer>
+        <div class="grid" id="newestGrid" aria-live="polite"></div>
+        <p class="muted small" style="margin-top:.8rem;">We update inventory weekly. If you don’t see what you want, message us and we’ll help you find it.</p>
+      </div>
+    </section>
 
-<script src="assets/app.js"></script>
+    <section class="section section--alt">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <div class="kicker">Services</div>
+            <h2>We make buying simple</h2>
+          </div>
+        </div>
 
+        <div class="features">
+          <article class="feature card">
+            <h3>Financing</h3>
+            <p class="muted">We help you explore financing options that fit your situation.</p>
+          </article>
+          <article class="feature card">
+            <h3>Delivery</h3>
+            <p class="muted">Ask about delivery availability, timing, and any fees.</p>
+          </article>
+          <article class="feature card">
+            <h3>Auction assistance</h3>
+            <p class="muted">Want something specific? We can guide you through auction sourcing and buying.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <div class="kicker">FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+        </div>
+
+        <div class="features">
+          <article class="feature card">
+            <h3>How do I buy a car?</h3>
+            <p class="muted">Browse inventory, open a vehicle, then contact us via WhatsApp or the contact form.</p>
+          </article>
+          <article class="feature card">
+            <h3>Do you have a physical address?</h3>
+            <p class="muted">No physical address listed. We serve Orlando and nearby areas and coordinate delivery/meetups.</p>
+          </article>
+          <article class="feature card">
+            <h3>Can you help me find a specific car?</h3>
+            <p class="muted">Yes — send the make/model/year and budget. We can assist through auctions or sourcing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <div class="footer__brand">CarQuest4U</div>
+        <p class="muted">Find it. Finance it. Drive it. • Orlando, FL</p>
+      </div>
+      <div>
+        <div class="footer__title">Contact</div>
+        <a href="tel:+14077707324">407-770-7324</a><br />
+        <a href="mailto:carquest4u@gmail.com">carquest4u@gmail.com</a><br />
+        <span class="muted">Monday–Friday 9–5pm</span>
+      </div>
+      <div>
+        <div class="footer__title">Legal</div>
+        <a href="terms.html">Terms & Conditions</a><br />
+        <a href="privacy.html">Privacy Policy</a><br />
+        <a href="disclaimers.html">Disclaimers</a>
+      </div>
+    </div>
+    <div class="wrap footer__bottom muted">© <span id="year"></span> CarQuest4U.</div>
+  </footer>
+
+  <a class="float-whatsapp" target="_blank" rel="noopener" href="https://wa.me/14077707324" aria-label="Chat on WhatsApp">
+    WhatsApp
+  </a>
+
+  <script src="assets/app.js"></script>
 </body>
 </html>
