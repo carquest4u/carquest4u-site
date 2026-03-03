@@ -28,14 +28,23 @@ function waLink(){
   const digits = raw.replace(/\D/g,'');
   return `https://wa.me/${digits}`;
 }
+function normalizeImageEntry(entry){
+  if (!entry) return { src:'', focus:'50% 50%' };
+  if (typeof entry === 'string') return { src: entry, focus:'50% 50%' };
+  return {
+    src: entry.src || '',
+    focus: entry.focus || '50% 50%'
+  };
+}
+
 function buildCarCard(car){
   const title = `${car.year} ${car.make} ${car.model}${car.trim ? ' ' + car.trim : ''}`;
-  const img = (car.images && car.images[0]) ? car.images[0] : '';
+  const firstImage = normalizeImageEntry((car.images && car.images[0]) ? car.images[0] : '');
   const hot = car.featured ? `<span class="badge badge--hot">Featured</span>` : '';
   const status = car.status ? `<span class="badge">${car.status}</span>` : '';
   return `
     <article class="card car-card">
-      <div class="car-card__img">${img ? `<img loading="lazy" src="${img}" alt="${title}">` : ''}</div>
+      <div class="car-card__img">${firstImage.src ? `<img loading="lazy" src="${firstImage.src}" alt="${title}" style="object-position:${firstImage.focus}">` : ''}</div>
       <div class="car-card__body">
         <div class="badges">${hot}${status}</div>
         <h3>${title}</h3>
@@ -200,19 +209,23 @@ async function carInit(){
 
   const mainImg = $('#mainImg');
   const thumbs = $('#thumbs');
-  if (mainImg && car.images?.length){
-    mainImg.src = car.images[0];
+  const images = (car.images || []).map(normalizeImageEntry).filter(i => i.src);
+  if (mainImg && images.length){
+    mainImg.src = images[0].src;
     mainImg.alt = title;
+    mainImg.style.objectPosition = images[0].focus;
   }
   if (thumbs){
-    thumbs.innerHTML = (car.images || []).slice(0,6).map((src,i)=>`
-      <div class="thumb" role="button" tabindex="0" aria-label="View image ${i+1}">
-        <img loading="lazy" src="${src}" alt="${title} photo ${i+1}">
+    thumbs.innerHTML = images.slice(0,6).map((img,i)=>`
+      <div class="thumb" role="button" tabindex="0" aria-label="View image ${i+1}" data-src="${img.src}" data-focus="${img.focus}">
+        <img loading="lazy" src="${img.src}" alt="${title} photo ${i+1}" style="object-position:${img.focus}">
       </div>
     `).join('');
-    $$('.thumb', thumbs).forEach((t, i)=>{
-      const src = car.images[i];
-      const go = () => { mainImg.src = src; };
+    $$('.thumb', thumbs).forEach((t)=>{
+      const go = () => {
+        mainImg.src = t.dataset.src;
+        mainImg.style.objectPosition = t.dataset.focus || '50% 50%';
+      };
       t.addEventListener('click', go);
       t.addEventListener('keypress', (e)=>{ if (e.key === 'Enter') go(); });
     });
@@ -253,7 +266,6 @@ function contactInit(){
   if (car) document.getElementById('cMessage').value = `Hi CarQuest4U,\n\nI'm interested in: ${car}\n\nPlease contact me with more details.\n`;
 
   const emailTo = 'carquest4u@gmail.com';
-  const wa = waLink();
 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -268,13 +280,9 @@ function contactInit(){
 
     window.location.href = `mailto:${encodeURIComponent(emailTo)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    const waText = `Hi CarQuest4U!%0A%0ATopic: ${encodeURIComponent(topic)}%0A%0A${encodeURIComponent(msg)}%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AEmail: ${encodeURIComponent(email)}`;
-    window.setTimeout(()=>{
-      window.open(`${wa}?text=${waText}`, '_blank', 'noopener');
-      const ty = document.getElementById('thankyou');
-      if (ty) ty.style.display = 'block';
-      form.reset();
-    }, 600);
+    const ty = document.getElementById('thankyou');
+    if (ty) ty.style.display = 'block';
+    form.reset();
   });
 
   const news = $('#newsletterForm');
