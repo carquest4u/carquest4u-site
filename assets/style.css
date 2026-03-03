@@ -66,16 +66,11 @@ h3{font-size:1.55rem}
 }
 .topbar__inner{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem}
 .brand{display:flex;align-items:center;gap:.75rem;min-width:210px}
-.brand__mark{
-  width:44px;height:44px;border-radius:14px;
-  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 55%),
-            linear-gradient(135deg,var(--red),#5b0000);
-  border:1px solid rgba(255,255,255,.14);
-  display:grid;place-items:center;overflow:hidden;
-    background-image: url('images/logo.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+}
+.brand__logo{
+  height:42px;
+  width:auto;
+  display:block;
 }
 .brand__mark img{width:44px;height:44px;object-fit:cover}
 .brand__name{font-family:Teko,sans-serif;font-size:1.85rem;letter-spacing:.04em}
