@@ -56,14 +56,16 @@ h3{font-size:1.55rem}
   border-radius:var(--radius2);
   box-shadow:var(--shadow);
   backdrop-filter:blur(10px);
-}
-
 .topbar{
-  position:sticky;top:0;z-index:40;
+  position:sticky;
+  top:0;
+  z-index:40;
   background:rgba(7,7,8,.75);
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(12px);
 }
+
+/* Separate block */
 .topbar__inner{
   display:flex;
   align-items:center;
@@ -72,7 +74,7 @@ h3{font-size:1.55rem}
   gap:1rem;
 }
 
-/* BRAND (CarQuest4u) */
+/* BRAND */
 .brand{
   display:flex;
   align-items:center;
@@ -81,12 +83,12 @@ h3{font-size:1.55rem}
   font-family:Teko, sans-serif;
   font-weight:600;
   font-size:2rem;
-  letter-spacing:0;           /* removes weird spacing */
+  letter-spacing:0;
   text-transform:uppercase;
   color:#fff;
   text-decoration:none;
   line-height:1;
-  white-space:nowrap;          /* prevents breaking */
+  white-space:nowrap;
 }
 
 .brand span{
