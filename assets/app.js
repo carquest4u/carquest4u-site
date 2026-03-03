@@ -263,42 +263,110 @@ function contactInit(){
 
   const p = qs();
   const car = p.car ? decodeURIComponent(p.car) : '';
-  if (car) document.getElementById('cMessage').value = `Hi CarQuest4U,\n\nI'm interested in: ${car}\n\nPlease contact me with more details.\n`;
+  if (car) document.getElementById('cMessage').value = `Hi CarQuest4U,
 
-  const emailTo = 'carquest4u@gmail.com';
+I'm interested in: ${car}
 
-  form.addEventListener('submit', (e)=>{
+Please contact me with more details.
+`;
+
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwvndgwq';
+  const submitToFormspree = async (payload) => {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok){
+      throw new Error('Form submission failed');
+    }
+    return res;
+  };
+
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const name = $('#cName').value.trim();
     const email = $('#cEmail').value.trim();
     const phone = $('#cPhone').value.trim();
     const topic = $('#cTopic').value;
     const msg = $('#cMessage').value.trim();
-
-    const subject = `CarQuest4U Inquiry${car ? ' - ' + car : ''} (${topic})`;
-    const body = [`Name: ${name}`, `Email: ${email}`, `Phone: ${phone}`, `Topic: ${topic}`, '', msg].join('\n');
-
-    window.location.href = `mailto:${encodeURIComponent(emailTo)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
+    const btn = form.querySelector('button[type="submit"]');
     const ty = document.getElementById('thankyou');
-    if (ty) ty.style.display = 'block';
-    form.reset();
+
+    if (btn) btn.disabled = true;
+    if (ty){
+      ty.style.display = 'none';
+      ty.textContent = '';
+    }
+
+    try{
+      await submitToFormspree({
+        formType: 'Contact Inquiry',
+        car,
+        name,
+        email,
+        phone,
+        topic,
+        message: msg,
+        sourcePage: location.pathname
+      });
+      if (ty){
+        ty.textContent = 'Thanks! Your message was sent successfully. We will contact you shortly.';
+        ty.style.display = 'block';
+      }
+      form.reset();
+    }catch(err){
+      console.error(err);
+      if (ty){
+        ty.textContent = 'We could not send your message right now. Please try again or contact us on WhatsApp.';
+        ty.style.display = 'block';
+      }
+    }finally{
+      if (btn) btn.disabled = false;
+    }
   });
 
   const news = $('#newsletterForm');
   if (news){
-    news.addEventListener('submit', (e)=>{
+    news.addEventListener('submit', async (e)=>{
       e.preventDefault();
       const em = $('#nEmail').value.trim();
-      const subject = 'Newsletter signup - CarQuest4U';
-      const body = `Please add this email to the newsletter list:\n\n${em}`;
-      window.location.href = `mailto:${encodeURIComponent(emailTo)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const btn = news.querySelector('button[type="submit"]');
       const nt = document.getElementById('nThanks');
-      if (nt) nt.style.display = 'block';
-      news.reset();
+
+      if (btn) btn.disabled = true;
+      if (nt){
+        nt.style.display = 'none';
+        nt.textContent = '';
+      }
+
+      try{
+        await submitToFormspree({
+          formType: 'Newsletter Signup',
+          email: em,
+          sourcePage: location.pathname
+        });
+        if (nt){
+          nt.textContent = 'Thanks! You are now subscribed to updates.';
+          nt.style.display = 'block';
+        }
+        news.reset();
+      }catch(err){
+        console.error(err);
+        if (nt){
+          nt.textContent = 'Signup failed right now. Please try again in a moment.';
+          nt.style.display = 'block';
+        }
+      }finally{
+        if (btn) btn.disabled = false;
+      }
     });
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', async ()=>{
   setYear();
