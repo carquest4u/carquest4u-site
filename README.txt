@@ -12,11 +12,8 @@ EDIT INVENTORY:
 NOTES:
 - Contact/newsletter forms submit to Formspree endpoint configured in assets/app.js.
 
-FOCUS PREVIEW TOOL:
-- Open: focus-tool.html
-- Drag the marker to set crop focus for each car image.
-- Download updated cars.json and replace data/cars.json.
-
-DEPLOYED PREVIEW URL:
-- https://<your-domain>/focus-tool.html
-- If page is missing, purge Cloudflare cache and redeploy.
+ADMIN PANEL:
+- Open: /admin/
+- CMS: /admin/cms.html (manage cars, upload images, publish workflow)
+- Focus Tool: /admin/focus-tool.html (visual crop focus editor)
+- NOTE: update admin/config.yml with your real GitHub repo before using CMS publish.

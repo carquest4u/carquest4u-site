@@ -66,7 +66,8 @@ function buildCarCard(car){
 async function loadCars(){
   const res = await fetch(DATA_URL, { cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to load cars.json');
-  return res.json();
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.cars || []);
 }
 
 function populateMakeModel(cars, makeSel, modelSel){
