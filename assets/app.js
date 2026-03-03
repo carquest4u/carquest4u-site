@@ -321,7 +321,7 @@ Please contact me with more details.
     }catch(err){
       console.error(err);
       if (ty){
-        ty.textContent = 'We could not send your message right now. Please try again or contact us on WhatsApp.';
+        ty.textContent = 'We could not send your message right now. Please try again in a moment.';
         ty.style.display = 'block';
       }
     }finally{
