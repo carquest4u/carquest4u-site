@@ -9,10 +9,7 @@
 <body>
 <header class="topbar">
   <div class="wrap topbar__inner">
-    <a class="brand" href="index.html">
-        <span class="brand__mark"></span>
-        <span class="brand__name">CarQuest<span>4u</span></span>
-      </a>
+    <a class="brand" href="index.html">CarQuest<span>4u</span></a>
 
     <nav class="nav">
       <a href="index.html" data-nav="home">Home</a>
@@ -29,6 +26,12 @@
 </header>
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const page = location.pathname.split('/').pop() || 'index.html';
+    const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
+    document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('is-active', a.dataset.nav === key));
+  });
+</script>
   document.addEventListener('DOMContentLoaded', () => {
     const page = location.pathname.split('/').pop() || 'index.html';
     const key = page.includes('inventory') ? 'inventory' : page.includes('contact') ? 'contact' : 'home';
