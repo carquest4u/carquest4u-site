@@ -109,7 +109,10 @@ async function homeInit(){
 
   populateMakeModel(cars, makeSel, modelSel);
 
-  const featured = cars.filter(c => c.featured).slice(0, 6);
+  const featured = [...cars]
+    .filter(c => c.featured)
+    .sort((a,b) => (b.year||0) - (a.year||0))
+    .slice(0, 6);
   const newest = [...cars].sort((a,b) => (b.year||0) - (a.year||0)).slice(0, 6);
   const list = featured.length ? featured : newest;
 
