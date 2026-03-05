@@ -74,5 +74,209 @@
         "focus": "50% 50%"
       }
     ]
+  },
+  {
+    "id": "cargo-van-2024",
+    "featured": true,
+    "status": "Available",
+    "year": 2024,
+    "make": "Ford",
+    "model": "Transit 350",
+    "trim": "Cargo Van (Refrigerated/Freezer)",
+    "price": 95000,
+    "mileage": 43000,
+    "transmission": "",
+    "fuel": "GASOLINE",
+    "body": "Refrigerated Van (Reefer)",
+    "color": "",
+    "vin": "1FTBW3X8XRKA80025",
+    "drivetrain": "REAR WHEEL DRIVE",
+    "title_status": "",
+    "financing": true,
+    "description": "2024 Ford Transit 350 refrigerated cargo van with professional freezer system. Excellent condition with 43,000 miles, ready for cold-chain deliveries and commercial use.",
+    "images": [
+      {
+        "src": "assets/images/Cargo_Van_-_Front.jpg",
+        "focus": "50% 45%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Back.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Side.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Side_2.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Cargo.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Display.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Interior.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Cargo_Van_-_Odometer.jpg",
+        "focus": "50% 50%"
+      }
+    ]
+  },
+  {
+    "id": "jeep-compass-2018",
+    "featured": true,
+    "status": "Available",
+    "year": 2018,
+    "make": "Jeep",
+    "model": "Compass",
+    "trim": "Altitude Sport Utility 4D",
+    "price": 12290,
+    "mileage": 111000,
+    "transmission": "",
+    "fuel": "GASOLINE",
+    "body": "4 Door Wagon/Sport Utility",
+    "color": "",
+    "vin": "3C4NJDBB5JT397590",
+    "drivetrain": "FRONT WHEEL DRIVE W/ 4X4",
+    "title_status": "Clean Title",
+    "financing": true,
+    "description": "2018 Jeep Compass Altitude in great condition with clean title and 111,000 miles. Reliable, comfortable, and well maintained\u2014ready for daily driving with solid performance and utility.",
+    "images": [
+      {
+        "src": "assets/images/Jeep_Compass_-_Front.jpg",
+        "focus": "50% 45%"
+      },
+      {
+        "src": "assets/images/Jeep_Compass_-_Back.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Jeep_Compass_Side.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Jeep_Compass_Side_2.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Jeep_Compass_-_Display.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Jeep_Compass_-_Odometer.jpg",
+        "focus": "50% 50%"
+      }
+    ]
+  },
+  {
+    "id": "mustang-mach-e-2023",
+    "featured": true,
+    "status": "Available",
+    "year": 2023,
+    "make": "Ford",
+    "model": "Mustang Mach-E",
+    "trim": "Premium",
+    "price": "",
+    "mileage": 27000,
+    "transmission": "",
+    "fuel": "ELECTRIC",
+    "body": "4 Door Wagon/Sport Utility",
+    "color": "",
+    "vin": "3FMTK3S57PMA88954",
+    "drivetrain": "ALL WHEEL DRIVE",
+    "title_status": "",
+    "financing": true,
+    "description": "2023 Ford Mustang Mach-E Premium \u2014 all-electric performance with everyday practicality. This AWD SUV delivers quick acceleration, smooth and quiet driving, and premium comfort for commuting or weekend trips. With only 27,000 miles, it offers modern tech, lower fuel and maintenance costs, and standout style in one package.",
+    "images": [
+      {
+        "src": "assets/images/Mustang Mach E - Front.jpg",
+        "focus": "50% 45%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - Back.png",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - side.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - side 2.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - Interior.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - Back Row.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Mustang Mach E - Odometer.jpg",
+        "focus": "50% 50%"
+      }
+    ]
+  },
+  {
+    "id": "santa-fe-hybrid-2023",
+    "featured": true,
+    "status": "Available",
+    "year": 2023,
+    "make": "Hyundai",
+    "model": "Santa Fe",
+    "trim": "Hybrid SEL Premium",
+    "price": "",
+    "mileage": 58000,
+    "transmission": "",
+    "fuel": "HYBRID",
+    "body": "4 Door Wagon/Sport Utility",
+    "color": "",
+    "vin": "5NMS3DA18PH005276",
+    "drivetrain": "ALL WHEEL DRIVE",
+    "title_status": "",
+    "financing": true,
+    "description": "2023 Hyundai Santa Fe Hybrid SEL Premium \u2014 efficient, comfortable, and family-ready. The hybrid powertrain helps reduce fuel costs while AWD adds confidence in changing road conditions. With 58,000 miles, it offers roomy seating, modern safety tech, and everyday versatility for buyers who want practicality without sacrificing comfort.",
+    "images": [
+      {
+        "src": "assets/images/Palisade - Front.jpg",
+        "focus": "50% 45%"
+      },
+      {
+        "src": "assets/images/Palisade - back.png",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade -Side.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade - side 2.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade - Front Row.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade - Back Row.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade - Display.jpg",
+        "focus": "50% 50%"
+      },
+      {
+        "src": "assets/images/Palisade - Odometer.jpg",
+        "focus": "50% 50%"
+      }
+    ]
   }
 ]
